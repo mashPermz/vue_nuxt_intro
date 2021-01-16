@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+  </div>
+  <hr/>
+  <button onclick="doAction();">
+    click!
+  </button>
+
+  <script>
+    var data = {
+      message: 'Yes.',
+      items: ['one', 'two', 'three', 'four', 'five']
+    }
+
+    var app = new Vue ({
+      el: '#app',
+      data: data,
+      render: (element) => {
+        var p = element(
+          'p',
+          {'style': 'font-size: 20px; color: red;'},
+          data.message
+        );
+
+        var li = data.items.map(
+          item => element('li', item)
+        );
+
+        var ol = element('ol', li);
+
+        var div = element('div', [p, ol]);
+
+        return div
+      }
+    })
+
+    function doAction() {
+      var newData = ['一', '二', '三', '四', '五']
+
+      data.message = 'You clicked!';
+      data.items[0] = '零';
+      for (n in data.items) {
+        data.items[n] = newData[n];
+      }
+    }
+  </script>
+</body>
+</html>
