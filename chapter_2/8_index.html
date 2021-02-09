@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <ol v-html="messages"></ol>
+  </div>
+  <hr />
+  <input type="text" oninput="doInput(event);" />
+  <button onclick="doAction();">
+    press!
+  </button>
+
+  <script>
+    var data = {
+      messages: '<li style="color: blue;">Yay!</li>'
+    };
+
+    var app = new Vue ({
+      el: '#app',
+      data: data,
+    });
+
+    function doInput(event) {
+      data.message = event.target.value;
+    };
+
+    function doAction() {
+      data.messages += '<li style="color: blue;">' + data.message + '</li>';
+    };
+
+  </script>
+</body>
+</html>
